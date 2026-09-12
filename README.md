@@ -1,38 +1,36 @@
 # Nexus Trading
 
-Autonomous evolutionary trading system using genetic algorithms to discover and optimize trading strategies.
-
-## Features
-
-- Genetic Algorithm Evolution - Strategies evolve through natural selection
-- Multi-Coin Support - BTC, ETH, SOL, HYPE, and more
-- Real-Time Market Data - Kraken, Binance, Bybit, Hyperliquid feeds
-- Continual Learning - Population weights updated every 5 minutes with real-time data
-- Regime Detection - Adapts to changing market conditions
-- Walk-Forward Validation - Out-of-sample testing prevents overfitting
+Quantitative trading and financial operations.
 
 ## Strategy
 
-Hybrid model combining:
-- 60% Technical signals (RSI, MACD, Bollinger, Stochastic, Williams %R, ROC, OBV)
-- 40% MoP-JEPA predictions (5 future predictions)
+- **Hybrid Model**: 60% technical signals (RSI, MACD, Bollinger, Stochastic, Williams %R, ROC, OBV) + 40% MoP-JEPA predictions
+- **Learning Rate**: 0.05
+- **Backtest**: Multi-coin BTC+ETH+SOL = 55.8% WR global (BTC 67.6%, HYPE 58.8%)
+- **Objective**: Win rate > 80% before live trading with leverage
 
-## Backtest Results
+## Components
 
-| Coin | Win Rate |
-|------|----------|
-| BTC  | 67.6%    |
-| HYPE | 58.8%    |
-| Multi-coin (BTC+ETH+SOL) | 55.8% |
+- Evolutionary Trader — Genetic algorithm with 30 genomes per coin
+- OmniFusionCore — MoP-JEPA 5 futures + Liquid Core + KAN + Active Inference
+- Paper Trading Engine — Risk-free strategy validation
+- Live Trading — Hyperliquid integration (gated by validation)
+- Win Rate Tracker — Auto-adjustment based on performance
+- Trading Optimizer — Pattern detection and parameter tuning
+- Hedging Sovereign — Capital preservation
+- Colony — 1000 algorithms in 45 groups with evolution and mutations
 
-## Architecture
+## Exchanges
 
-The continual learning module bridges the training-live gap by:
-1. Fetching real-time candles every 5 minutes
-2. Comparing real-time vs historical data
-3. Detecting regime changes
-4. Re-evaluating top genomes on real-time data
-5. Adjusting fitness and persisting updated population
+- Hyperliquid (perpetual futures)
+- Kraken (spot, withdrawals)
+
+## Safety
+
+- Live execution gated by validation and authorization
+- Clear distinction between paper/backtest/live results
+- Risk controls on position sizing
+- Withdrawal mechanism verification
 
 ## License
 
